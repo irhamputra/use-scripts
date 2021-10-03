@@ -1,6 +1,6 @@
-# use-scripts
+# useScripts
 
-> Create multiple script with Hooks
+fork from [`useScript`](https://usehooks.com/useScript/) but with enhancing for creating multiple Script tag
 
 [![NPM](https://img.shields.io/npm/v/use-scripts.svg)](https://www.npmjs.com/package/use-scripts) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -15,13 +15,17 @@ npm install --save use-scripts
 ```tsx
 import * as React from 'react'
 
-import { useMyHook } from 'use-scripts'
+import { useScripts } from 'use-scripts'
 
 const Example = () => {
-  const example = useMyHook()
+  const status = useScripts(['script_1.js', 'https://example.com/script-external.js']);
+  
   return (
     <div>
-      {example}
+      {status === "ready" && 'do something'}
+      {status === "load" && 'do something'}
+      {status === "error" && 'do something'}
+      {status === "idle" && 'do something'}
     </div>
   )
 }
