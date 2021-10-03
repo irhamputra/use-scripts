@@ -1,4 +1,4 @@
-import { useMyHook } from './'
+import useScripts  from './index'
 import { renderHook, act } from "@testing-library/react-hooks";
 
 // mock timer using jest
@@ -6,9 +6,9 @@ jest.useFakeTimers();
 
 describe('useMyHook', () => {
   it('updates every second', () => {
-    const { result } = renderHook(() => useMyHook());
+    const { result } = renderHook(() => useScripts(['scripts_1.js', 'https://example.com/script.js']));
 
-    expect(result.current).toBe(0);
+    expect(result.current).toBe('error' || 'idle' || 'load' || 'error')
 
     // Fast-forward 1sec
     act(() => {
